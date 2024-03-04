@@ -2,6 +2,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+bool Comp(pair<int,int> a,pair<int,int> b){
+    if(b.second-b.first<a.second-a.first)return true;
+    return false;
+}
 
 vector<pair<int,int>> GeneCode(string s){
     vector<int>v1,v2;
@@ -92,7 +96,9 @@ vector<pair<int,int>> GeneCode(string s){
 int main(){
     string s;
     cin>>s;
+    transform(s.begin(), s.end(), s.begin(), ::toupper);
     vector<pair<int,int>>v=GeneCode(s);
+    sort(v.begin(),v.end(),Comp);
     for(int i=0;i<v.size();i++){
         cout<<v[i].first+1<<" "<<v[i].second+1<<endl;
     }
